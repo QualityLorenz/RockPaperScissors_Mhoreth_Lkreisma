@@ -1,6 +1,5 @@
 package htl.steyr.rockpaperscissors_mhoreth_lkreisma;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Computer {
