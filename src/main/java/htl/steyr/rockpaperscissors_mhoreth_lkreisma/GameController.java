@@ -2,8 +2,14 @@ package htl.steyr.rockpaperscissors_mhoreth_lkreisma;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 
 public class GameController {
+    public ImageView myWeaponImageView;
+    public ImageView botWeaponImageView;
+    public ImageView stoneImageView;
+    public ImageView paperImageView;
+    public ImageView scissorsImageView;
     private String weapon;
 
 
