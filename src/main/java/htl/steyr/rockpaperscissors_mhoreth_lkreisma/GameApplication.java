@@ -16,5 +16,8 @@ public class GameApplication extends Application {
         stage.setScene(scene);
         stage.show();
 
+        Computer computer = new Computer();
+        System.out.println(computer.chosenWeapon());
+
     }
 }
