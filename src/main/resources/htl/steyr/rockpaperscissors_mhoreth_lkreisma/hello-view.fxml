@@ -18,13 +18,10 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Button layoutX="119.0" layoutY="309.0" mnemonicParsing="false" onAction="#weaponButtonClicked" text="Rock" />
-      <Button layoutX="277.0" layoutY="309.0" mnemonicParsing="false" onAction="#weaponButtonClicked" text="Paper" />
-      <Button layoutX="432.0" layoutY="309.0" mnemonicParsing="false" onAction="#weaponButtonClicked" text="Scissors" />
-      <ImageView fx:id="myWeaponImageView" fitHeight="150.0" fitWidth="150.0" layoutX="81.0" layoutY="522.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="botWeaponImageView" fitHeight="150.0" fitWidth="150.0" layoutX="400.0" layoutY="522.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="stoneImageView" fitHeight="100.0" fitWidth="100.0" layoutX="90.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="paperImageView" fitHeight="100.0" fitWidth="100.0" layoutX="251.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="scissorsImageView" fitHeight="100.0" fitWidth="100.0" layoutX="411.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="rockButton" layoutX="119.0" layoutY="248.0" mnemonicParsing="false" onAction="#weaponButtonClicked" text="Rock" />
+      <Button fx:id="paperButton" layoutX="277.0" layoutY="248.0" mnemonicParsing="false" onAction="#weaponButtonClicked" text="Paper" />
+      <Button fx:id="scissorsButton" layoutX="432.0" layoutY="248.0" mnemonicParsing="false" onAction="#weaponButtonClicked" text="Scissors" />
+      <ImageView fx:id="myWeaponImageView" fitHeight="150.0" fitWidth="150.0" layoutX="71.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="botWeaponImageView" fitHeight="150.0" fitWidth="150.0" layoutX="380.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

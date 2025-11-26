@@ -3,6 +3,7 @@ package htl.steyr.rockpaperscissors_mhoreth_lkreisma;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,9 +16,5 @@ public class GameApplication extends Application {
         stage.setTitle("Rock! Paper! Scissors!");
         stage.setScene(scene);
         stage.show();
-
-        Computer computer = new Computer();
-        System.out.println(computer.chosenWeapon());
-
     }
 }

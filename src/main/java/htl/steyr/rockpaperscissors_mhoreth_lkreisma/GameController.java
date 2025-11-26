@@ -7,20 +7,17 @@ import javafx.scene.image.ImageView;
 public class GameController {
     public ImageView myWeaponImageView;
     public ImageView botWeaponImageView;
-    public ImageView stoneImageView;
-    public ImageView paperImageView;
-    public ImageView scissorsImageView;
+    public Button scissorsButton;
+    public Button paperButton;
+    public Button rockButton;
     private String weapon;
-
 
     public void weaponButtonClicked(ActionEvent actionEvent) {
         //holt sich das was auf dem Button steht
         weapon = ((Button) actionEvent.getSource()).getText();
         //in weapon steht nun die ausgewählte Waffe (Rock) (Paper) (Scissors)
-
-
-        }
-
     }
+
+}
 
     
