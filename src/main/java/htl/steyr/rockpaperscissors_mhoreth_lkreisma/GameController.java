@@ -16,18 +16,29 @@ public class GameController {
 
     private Computer computer = new Computer();
     private String myWeapon;
-    private String botWeapon = computer.chosenWeapon();
+    private String botWeapon;
 
 
     public void weaponButtonClicked(ActionEvent actionEvent) {
         //holt sich das was auf dem Button steht
         myWeapon = ((Button) actionEvent.getSource()).getText();
         //in weapon steht nun die ausgewählte Waffe (Rock) (Paper) (Scissors)
+        botWeapon = computer.chosenWeapon();
 
         Image botImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfBot())));
         botWeaponImageView.setImage(botImage);
         Image myImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfMe())));
         myWeaponImageView.setImage(myImage);
+
+        if(winnerOfMatch()){
+            System.out.println("! YOU WON !");
+        }else{
+            if(myWeapon.equals(botWeapon)){
+                System.out.println("It's a draw!");
+            }
+            System.out.println("! THE BOT WON :( !");
+        }
+
 
 
 
@@ -54,11 +65,11 @@ public class GameController {
 
 
     public boolean winnerOfMatch() {
-        if (botWeapon.equals("Stone") && myWeapon.equals("Scissors") ||
-                botWeapon.equals("Scissors") && myWeapon.equals("Paper") ||
-                botWeapon.equals("Paper") && myWeapon.equals("Stone")){
+        if (myWeapon.equals("Rock") && botWeapon.equals("Scissors") ||
+                myWeapon.equals("Scissors") && botWeapon.equals("Paper") ||
+                myWeapon.equals("Paper") && botWeapon.equals("Rock")){
             return true;
-        }else {
+        }else{
             return false;
         }
     }
