@@ -15,6 +15,11 @@ public class GameController {
     public ImageView scissorsImageView;
 
     private final Computer computer = new Computer();
+
+    public Button rockButton;
+    public Button paperButton;
+    public Button scissorsButton;
+
     private String myWeapon;
     private String botWeapon;
     private String weapon;
@@ -22,7 +27,7 @@ public class GameController {
 
     public void weaponButtonClicked(ActionEvent actionEvent) {
         //holt sich das was auf dem Button steht
-        myWeapon = ((Button) actionEvent.getSource()).getText();
+        myWeapon = ((Button) actionEvent.getSource()).getId();
 
         //in weapon steht nun die ausgewählte Waffe (Rock) (Paper) (Scissors)
         botWeapon = computer.chosenWeapon();
@@ -57,10 +62,11 @@ public class GameController {
         };
     }
     public String pictureOfMe(){
+        System.out.println(myWeapon);
         return switch(myWeapon){
-            case "Rock" -> "pictures/stone.png";
-            case "Paper" -> "pictures/paper.png";
-            case "Scissors" -> "pictures/scissors.png";
+            case "rockButton" -> "pictures/Rock.png";
+            case "paperButton" -> "pictures/Paper.png";
+            case "scissorsButton" -> "pictures/Scissors.png";
             default -> null;
         };
     }
