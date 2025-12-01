@@ -38,14 +38,15 @@ public class GameController {
         Image myImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfMe())));
         myWeaponImageView.setImage(myImage);
 
-        if(winnerOfMatch()){
+        if(winnerOfMatch() == 1){
             System.out.println("! YOU WON !");
+        }else if(winnerOfMatch() == 2){
+            System.out.println("! ITS A DRAW !");
+        }else if(winnerOfMatch() == 3){
+            System.out.println("! THE BOT WON !");
         }else{
-            if(myWeapon.equals(botWeapon)){
-                System.out.println("It's a draw!");
-            }else {
-            System.out.println("! THE BOT WON :( !");
-            }
+            //to prevent any errors if winnerOfMatch smaller than 1 or larger than 3
+            System.out.println("ERROR, somethings not working");
         }
 
 
@@ -74,13 +75,17 @@ public class GameController {
 
 
 
-    public boolean winnerOfMatch() {
-        if (myWeapon.equals("Rock") && botWeapon.equals("Scissors") ||
-                myWeapon.equals("Scissors") && botWeapon.equals("Paper") ||
-                myWeapon.equals("Paper") && botWeapon.equals("Rock")){
-            return true;
+    public int winnerOfMatch() {
+        if (myWeapon.equals("rockButton") && botWeapon.equals("Scissors") ||
+                myWeapon.equals("scissorsButton") && botWeapon.equals("Paper") ||
+                myWeapon.equals("paperButton") && botWeapon.equals("Rock")){
+            return 1;
+        }else if(myWeapon.equals("rockButton") && botWeapon.equals("Rock") ||
+                myWeapon.equals("scissorsButton") && botWeapon.equals("Scissors") ||
+                myWeapon.equals("paperButton") && botWeapon.equals("Paper")) {
+            return 2;
         }else{
-            return false;
+            return 3;
         }
     }
 
