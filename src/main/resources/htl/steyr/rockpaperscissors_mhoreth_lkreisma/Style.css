@@ -1,17 +1,17 @@
 #rockButton {
-    -fx-background-image: url("../../../pictures/Rock.png");
+    -fx-background-image: url("./pictures/Rock.png");
     -fx-background-size: cover;
     -fx-background-color:transparent;
 }
 
 #paperButton {
-    -fx-background-image: url("../../../pictures/Paper.png");
+    -fx-background-image: url("./pictures/Paper.png");
     -fx-background-size: cover;
     -fx-background-color:transparent;
 }
 
 #scissorsButton {
-    -fx-background-image: url("../../../pictures/Scissors.png");
+    -fx-background-image: url("pictures/Scissors.png");
     -fx-background-size: cover;
     -fx-background-color:transparent;
 }
