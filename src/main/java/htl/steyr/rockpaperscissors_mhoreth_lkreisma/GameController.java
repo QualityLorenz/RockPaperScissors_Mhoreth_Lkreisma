@@ -1,11 +1,14 @@
 package htl.steyr.rockpaperscissors_mhoreth_lkreisma;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class GameController {
     public ImageView myWeaponImageView;
@@ -37,6 +40,9 @@ public class GameController {
         botWeaponImageView.setImage(botImage);
         Image myImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfMe())));
         myWeaponImageView.setImage(myImage);
+
+
+        progressBar();
 
         if(winnerOfMatch() == 1){
             System.out.println("! YOU WON !");
@@ -89,6 +95,40 @@ public class GameController {
         }
     }
 
+    public void progressBar(){
+        ProgressBar progressbar = new ProgressBar();
+
+        progressbar.setProgress(0);
+
+        Thread thread = new Thread(() -> {
+            int progresstime = 1000 + new Random().nextInt(5000);
+
+            try {
+                long startTime = System.currentTimeMillis();
+                long endTime = startTime + progresstime;
+                System.out.println("Time: " + progresstime);
+
+                while (System.currentTimeMillis() < endTime) {
+                    double progress = (double) (System.currentTimeMillis() - startTime) / progresstime;
+                    Platform.runLater(() -> progressbar.setProgress(progress));
+
+                    // CHANGE: 20ms provides smooth animation. 2000ms is 2 seconds!
+                    Thread.sleep(20);
+                }
+
+                // Finish up
+                Platform.runLater(() -> {
+                    progressbar.setProgress(1.0);
+                    winnerOfMatch(); // Call the result method here!
+                });
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        });
+        thread.start();
     }
+
+}
 
     
