@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class GameController {
@@ -25,12 +26,13 @@ public class GameController {
     private String weapon;
 
 
-    public void weaponButtonClicked(ActionEvent actionEvent) {
+    public void weaponButtonClicked(ActionEvent actionEvent) throws IOException {
         //holt sich das was auf dem Button steht
         myWeapon = ((Button) actionEvent.getSource()).getId();
 
         //in weapon steht nun die ausgewählte Waffe (Rock) (Paper) (Scissors)
         botWeapon = computer.chosenWeapon();
+
 
 
         Image botImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfBot())));
