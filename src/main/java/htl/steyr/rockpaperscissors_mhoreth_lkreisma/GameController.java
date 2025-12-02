@@ -32,6 +32,9 @@ public class GameController {
         //holt sich das was auf dem Button steht
         myWeapon = ((Button) actionEvent.getSource()).getId();
 
+        Image myImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfMe())));
+        myWeaponImageView.setImage(myImage);
+
         //in weapon steht nun die ausgewählte Waffe (Rock) (Paper) (Scissors)
         botWeapon = computer.chosenWeapon();
 
@@ -77,8 +80,7 @@ public class GameController {
     public void resultOfMatch(){
         Image botImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfBot())));
         botWeaponImageView.setImage(botImage);
-        Image myImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfMe())));
-        myWeaponImageView.setImage(myImage);
+
 
 
         if(winnerOfMatch() == 1){
