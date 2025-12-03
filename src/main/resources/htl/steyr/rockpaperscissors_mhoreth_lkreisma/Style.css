@@ -15,3 +15,7 @@
     -fx-background-size: cover;
     -fx-background-color:transparent;
 }
+
+#RockPaperScissorsAnchorpane{
+    -fx-background-color: #99ebff;
+}

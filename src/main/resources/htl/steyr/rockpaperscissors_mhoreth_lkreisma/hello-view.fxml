@@ -8,14 +8,14 @@
 
 <AnchorPane fx:id="RockPaperScissorsAnchorpane" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="htl.steyr.rockpaperscissors_mhoreth_lkreisma.GameController">
    <children>
-      <Label layoutX="140.0" layoutY="24.0" text="Rock Paper Scissors">
+      <Label layoutX="157.0" layoutY="59.0" prefHeight="39.0" prefWidth="321.0" text="Rock Paper Scissors">
          <font>
             <Font size="37.0" />
          </font>
       </Label>
-      <Label layoutX="221.0" layoutY="141.0" text="Choose your weapon">
+      <Label layoutX="218.0" layoutY="184.0" text="Choose your weapon">
          <font>
-            <Font size="17.0" />
+            <Font name="System Bold Italic" size="17.0" />
          </font>
       </Label>
       <Button fx:id="rockButton" layoutX="96.0" layoutY="248.0" mnemonicParsing="false" onAction="#weaponButtonClicked" prefHeight="100.0" prefWidth="100.0" />
@@ -23,5 +23,15 @@
       <Button fx:id="scissorsButton" layoutX="405.0" layoutY="248.0" mnemonicParsing="false" onAction="#weaponButtonClicked" prefHeight="100.0" prefWidth="100.0" />
       <ImageView fx:id="myWeaponImageView" fitHeight="150.0" fitWidth="150.0" layoutX="71.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="botWeaponImageView" fitHeight="150.0" fitWidth="150.0" layoutX="380.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="285.0" layoutY="492.0" text="VS">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Label>
+      <Label fx:id="displayWinner" alignment="CENTER" contentDisplay="CENTER" layoutX="97.0" layoutY="620.0" prefHeight="47.0" prefWidth="408.0">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

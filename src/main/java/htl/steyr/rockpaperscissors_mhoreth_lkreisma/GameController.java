@@ -3,6 +3,7 @@ package htl.steyr.rockpaperscissors_mhoreth_lkreisma;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -22,6 +23,7 @@ public class GameController {
     public Button paperButton;
     public Button scissorsButton;
     public AnchorPane RockPaperScissorsAnchorpane;
+    public Label displayWinner;
 
     private String myWeapon;
     private String botWeapon;
@@ -29,6 +31,8 @@ public class GameController {
 
 
     public void weaponButtonClicked(ActionEvent actionEvent) {
+        botWeaponImageView.setImage(null);
+        displayWinner.setText(null);
         //holt sich das was auf dem Button steht
         myWeapon = ((Button) actionEvent.getSource()).getId();
 
@@ -51,7 +55,6 @@ public class GameController {
         };
     }
     public String pictureOfMe(){
-        System.out.println(myWeapon);
         return switch(myWeapon){
             case "rockButton" -> "pictures/Rock.png";
             case "paperButton" -> "pictures/Paper.png";
@@ -84,11 +87,11 @@ public class GameController {
 
 
         if(winnerOfMatch() == 1){
-            System.out.println("! YOU WON !");
+                displayWinner.setText("! YOU WON !");
         }else if(winnerOfMatch() == 2){
-            System.out.println("! ITS A DRAW !");
+            displayWinner.setText("! ITS A DRAW !");
         }else if(winnerOfMatch() == 3){
-            System.out.println("! THE BOT WON !");
+            displayWinner.setText("! THE BOT WON !");
         }else{
             //to prevent any errors if winnerOfMatch smaller than 1 or larger than 3
             System.out.println("ERROR, somethings not working");
@@ -111,7 +114,6 @@ public class GameController {
             try {
                 long startTime = System.currentTimeMillis();
                 long endTime = startTime + progresstime;
-                System.out.println("Time: " + progresstime); //to find out how long it took
 
                 while (System.currentTimeMillis() < endTime) {
                     double progress = (double) (System.currentTimeMillis() - startTime) / progresstime;
