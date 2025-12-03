@@ -1,5 +1,7 @@
 package htl.steyr.rockpaperscissors_mhoreth_lkreisma;
 
+import javafx.scene.shape.Path;
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,8 +10,8 @@ import java.util.Arrays;
 
 public class Highscore {
 
-    private int highscore;
-    private int currentScore;
+    private int highscore = 1;
+    private int currentScore = 3;
 
 
     public int getHighscore() {
@@ -17,7 +19,15 @@ public class Highscore {
     }
 
 
-    public void setHighscore(int highscore) {
+    public void setHighscore(int newhighscore){
+
+
+        try{
+            highscore = newhighscore;
+            writeHighscore();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
 
     }
     public int getCurrentScore() {
@@ -28,6 +38,11 @@ public class Highscore {
         this.currentScore = currentScore;
     }
 
+    public void writeHighscore() throws IOException {
+        FileWriter fileWriter = new FileWriter("highscore.txt");
+        fileWriter.write(Integer.toString(highscore));
+        fileWriter.close();
+    }
 
 
 }

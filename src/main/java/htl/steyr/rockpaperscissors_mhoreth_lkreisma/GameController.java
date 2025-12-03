@@ -29,6 +29,8 @@ public class GameController {
     private String myWeapon;
     private String botWeapon;
 
+    Highscore score = new Highscore();
+
 
 
     public void weaponButtonClicked(ActionEvent actionEvent) {
@@ -42,6 +44,10 @@ public class GameController {
 
         //in weapon steht nun die ausgewählte Waffe (Rock) (Paper) (Scissors)
         botWeapon = computer.chosenWeapon();
+
+
+            score.setHighscore(5);
+
 
         progressBar();
 
