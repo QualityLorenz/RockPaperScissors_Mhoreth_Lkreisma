@@ -2,16 +2,15 @@ package htl.steyr.rockpaperscissors_mhoreth_lkreisma;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaView;
-import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.Objects;
@@ -22,38 +21,21 @@ public class GameController {
     public ImageView botWeaponImageView;
 
 
-
-
     private final Computer computer = new Computer();
 
     public Button rockButton;
     public Button paperButton;
     public Button scissorsButton;
     public AnchorPane RockPaperScissorsAnchorpane;
+    public ChoiceBox musicChoiceBox;
 
     private String myWeapon;
     private String botWeapon;
 
 
-
-    public void initialize(){
-        startmusic();
+    public void initialize() {
+        displayChoiceBox();
     }
-
-
-    public void startmusic(){
-        try {
-            URL resource = getClass().getResource("./music/Gelbton - Losing control.mp3");
-            Media sound = new Media(resource.toExternalForm());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.setVolume(50);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.play();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }
-
 
     public void weaponButtonClicked(ActionEvent actionEvent) {
         //holt sich das was auf dem Button steht
@@ -70,17 +52,18 @@ public class GameController {
 
     }
 
-    public String pictureOfBot(){
-        return switch(botWeapon){
+    public String pictureOfBot() {
+        return switch (botWeapon) {
             case "Rock" -> "pictures/Rock.png";
             case "Paper" -> "pictures/Paper.png";
             case "Scissors" -> "pictures/Scissors.png";
             default -> null;
         };
     }
-    public String pictureOfMe(){
+
+    public String pictureOfMe() {
         System.out.println(myWeapon);
-        return switch(myWeapon){
+        return switch (myWeapon) {
             case "rockButton" -> "pictures/Rock.png";
             case "paperButton" -> "pictures/Paper.png";
             case "scissorsButton" -> "pictures/Scissors.png";
@@ -89,48 +72,45 @@ public class GameController {
     }
 
 
-
-
     public int winnerOfMatch() {
         if (myWeapon.equals("rockButton") && botWeapon.equals("Scissors") ||
                 myWeapon.equals("scissorsButton") && botWeapon.equals("Paper") ||
-                myWeapon.equals("paperButton") && botWeapon.equals("Rock")){
+                myWeapon.equals("paperButton") && botWeapon.equals("Rock")) {
             return 1; // -> I Win
-        }else if(myWeapon.equals("rockButton") && botWeapon.equals("Rock") ||
+        } else if (myWeapon.equals("rockButton") && botWeapon.equals("Rock") ||
                 myWeapon.equals("scissorsButton") && botWeapon.equals("Scissors") ||
                 myWeapon.equals("paperButton") && botWeapon.equals("Paper")) {
             return 2; // -> Its a Draw
-        }else{
+        } else {
             return 3; // -> The Bot Won
         }
     }
 
-    public void resultOfMatch(){
+    public void resultOfMatch() {
         Image botImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfBot())));
         botWeaponImageView.setImage(botImage);
 
 
-
-        if(winnerOfMatch() == 1){
+        if (winnerOfMatch() == 1) {
             System.out.println("! YOU WON !");
-        }else if(winnerOfMatch() == 2){
+        } else if (winnerOfMatch() == 2) {
             System.out.println("! ITS A DRAW !");
-        }else if(winnerOfMatch() == 3){
+        } else if (winnerOfMatch() == 3) {
             System.out.println("! THE BOT WON !");
-        }else{
+        } else {
             //to prevent any errors if winnerOfMatch smaller than 1 or larger than 3
             System.out.println("ERROR, somethings not working");
         }
     }
 
-    public synchronized void progressBar(){
+    public synchronized void progressBar() {
         ProgressBar progressbar = new ProgressBar();
         progressbar.setVisible(true);
         RockPaperScissorsAnchorpane.getChildren().add(progressbar);
         progressbar.setPrefWidth(80);
         progressbar.setPrefHeight(20);
-        progressbar.setLayoutY((RockPaperScissorsAnchorpane.getPrefHeight()/3)*2);
-        progressbar.setLayoutX((RockPaperScissorsAnchorpane.getPrefWidth()/2)-40);
+        progressbar.setLayoutY((RockPaperScissorsAnchorpane.getPrefHeight() / 3) * 2);
+        progressbar.setLayoutX((RockPaperScissorsAnchorpane.getPrefWidth() / 2) - 40);
         progressbar.setProgress(0);
 
         Thread thread = new Thread(() -> {
@@ -163,6 +143,28 @@ public class GameController {
         thread.start();
     }
 
+    public void displayChoiceBox() {
+        musicChoiceBox.getItems().add("Gelbton - Losing control.mp3");
+        musicChoiceBox.getItems().add("Mii_Lobbymusic.mp3");
+        musicChoiceBox.getItems().add("Push_Push_Push.mp3");
+    }
+
+    public void choiceBoxClicked(MouseEvent mouseEvent) {
+        String value = (String) musicChoiceBox.getValue();
+        String path = "./music/" + value;
+
+        try {
+            URL resource = getClass().getResource(null);
+            Media sound = new Media(resource.toExternalForm());
+            MediaPlayer mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setVolume(50);
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer.play();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
 }
 
     

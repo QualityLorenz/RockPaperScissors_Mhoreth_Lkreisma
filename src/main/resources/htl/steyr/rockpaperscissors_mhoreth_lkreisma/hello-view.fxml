@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.scene.media.MediaView?>
-<AnchorPane fx:id="RockPaperScissorsAnchorpane" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="htl.steyr.rockpaperscissors_mhoreth_lkreisma.GameController">
+<AnchorPane fx:id="RockPaperScissorsAnchorpane" prefHeight="920.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="htl.steyr.rockpaperscissors_mhoreth_lkreisma.GameController">
    <children>
       <Label layoutX="140.0" layoutY="24.0" text="Rock Paper Scissors">
          <font>
@@ -24,5 +24,11 @@
       <Button fx:id="scissorsButton" layoutX="405.0" layoutY="248.0" mnemonicParsing="false" onAction="#weaponButtonClicked" prefHeight="100.0" prefWidth="100.0" />
       <ImageView fx:id="myWeaponImageView" fitHeight="150.0" fitWidth="150.0" layoutX="71.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="botWeaponImageView" fitHeight="150.0" fitWidth="150.0" layoutX="380.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true" />
+      <ChoiceBox fx:id="musicChoiceBox" layoutX="-1.0" layoutY="730.0" onMouseClicked="#choiceBoxClicked" prefWidth="150.0" />
+      <Label layoutX="16.0" layoutY="700.0" text="Music Player">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
