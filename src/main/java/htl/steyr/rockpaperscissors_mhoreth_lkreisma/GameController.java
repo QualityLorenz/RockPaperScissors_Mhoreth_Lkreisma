@@ -37,6 +37,9 @@ public class GameController {
     private int count = 0;
 
 
+    public void initialize(){
+        highscoreLabel.setText(String.valueOf(score.getHighscore()));
+    }
 
     public void weaponButtonClicked(ActionEvent actionEvent) {
         botWeaponImageView.setImage(null);
@@ -50,9 +53,6 @@ public class GameController {
         //in weapon steht nun die ausgewählte Waffe (Rock) (Paper) (Scissors)
         botWeapon = computer.chosenWeapon();
 
-
-
-        System.out.println(score.getHighscore());
 
 
         progressBar();
@@ -101,18 +101,23 @@ public class GameController {
 
         if(winnerOfMatch() == 1){
                 displayWinner.setText("! YOU WON !");
-                ++count;
+                ++count; //akuteller score wird erhoet
                 if(count > score.getHighscore()){
-                    score.setHighscore(count);
+                    score.setHighscore(count); //Wenn der aktuelle score hoeher als der alte highscore ist wird die .txt + label aktualisiert
+                    highscoreLabel.setText(String.valueOf(score.getHighscore()));
+
                 }
         }else if(winnerOfMatch() == 2){
             displayWinner.setText("! ITS A DRAW !");
         }else if(winnerOfMatch() == 3){
             displayWinner.setText("! THE BOT WON !");
+            count = 0;
         }else{
             //to prevent any errors if winnerOfMatch smaller than 1 or larger than 3
             System.out.println("ERROR, somethings not working");
         }
+
+        scoreLabel.setText(String.valueOf(count));
     }
 
     public synchronized void progressBar(){
