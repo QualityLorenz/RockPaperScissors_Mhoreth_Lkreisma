@@ -36,7 +36,6 @@ public class GameController {
     public Button scissorsButton;
 
     public AnchorPane RockPaperScissorsAnchorpane;
-    public ChoiceBox musicChoiceBox;
 
     public Label displayWinner; // Hauptcontainer für das Spiel
     private String myWeapon; // vom Spieler gewählte Waffe
@@ -67,6 +66,13 @@ public class GameController {
                 mediaPlayer.stop();
             }
 
+
+
+            // Stoppe vorherige Musik, falls vorhanden
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+            }
+
             // Lade die neue Musikdatei aus dem Ressourcenpfad
             String resourcePath = "/htl/steyr/rockpaperscissors_mhoreth_lkreisma/music/" + newValue;
             URL url = getClass().getResource(resourcePath);
@@ -84,12 +90,9 @@ public class GameController {
         });
     }
 
-
-
     public void weaponButtonClicked(ActionEvent actionEvent) {
         botWeaponImageView.setImage(null);
         displayWinner.setText(null);
-        //holt sich das was auf dem Button steht
         // Hole die ID des gedrückten Buttons (z. B. "rockButton")
         myWeapon = ((Button) actionEvent.getSource()).getId();
 
@@ -104,9 +107,8 @@ public class GameController {
         progressBar();
     }
 
-    // Liefert den Bildpfad für die Bot-Waffe
-    public String pictureOfBot() {
-        return switch (botWeapon) {
+    public String pictureOfBot(){
+        return switch(botWeapon){
             case "Rock" -> "pictures/Rock.png";
             case "Paper" -> "pictures/Paper.png";
             case "Scissors" -> "pictures/Scissors.png";
@@ -128,9 +130,9 @@ public class GameController {
     public int winnerOfMatch() {
         if (myWeapon.equals("rockButton") && botWeapon.equals("Scissors") ||
                 myWeapon.equals("scissorsButton") && botWeapon.equals("Paper") ||
-                myWeapon.equals("paperButton") && botWeapon.equals("Rock")){
-            return 1; // // Spieler gewinnt
-        }else if(myWeapon.equals("rockButton") && botWeapon.equals("Rock") ||
+                myWeapon.equals("paperButton") && botWeapon.equals("Rock")) {
+            return 1; // Spieler gewinnt
+        } else if (myWeapon.equals("rockButton") && botWeapon.equals("Rock") ||
                 myWeapon.equals("scissorsButton") && botWeapon.equals("Scissors") ||
                 myWeapon.equals("paperButton") && botWeapon.equals("Paper")) {
             return 2; // Unentschieden
@@ -190,9 +192,7 @@ public class GameController {
                 while (System.currentTimeMillis() < endTime) {
                     double progress = (double) (System.currentTimeMillis() - startTime) / progresstime;
                     Platform.runLater(() -> progressbar.setProgress(progress));
-
-                    // CHANGE: for a smooth animation later
-                    Thread.sleep(20);
+                    Thread.sleep(20); // flüssige Animation
                 }
 
                 // Fortschrittsbalken ausblenden und Ergebnis anzeigen
