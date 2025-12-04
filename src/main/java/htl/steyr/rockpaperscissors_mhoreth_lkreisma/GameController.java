@@ -1,13 +1,14 @@
+
 package htl.steyr.rockpaperscissors_mhoreth_lkreisma;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -17,41 +18,77 @@ import java.util.Objects;
 import java.util.Random;
 
 public class GameController {
+
+    // ImageViews für die Anzeige der Waffen
     public ImageView myWeaponImageView;
     public ImageView botWeaponImageView;
 
+    @FXML
+    private ChoiceBox<String> musicChoiceBox; // Musik-Auswahlbox
+    private MediaPlayer mediaPlayer; // aktueller Musikplayer
 
-    private final Computer computer = new Computer();
+    private final Computer computer = new Computer(); // Bot-Logik
 
+    // Buttons für die Waffenwahl
     public Button rockButton;
     public Button paperButton;
     public Button scissorsButton;
-    public AnchorPane RockPaperScissorsAnchorpane;
-    public ChoiceBox musicChoiceBox;
 
-    private String myWeapon;
-    private String botWeapon;
+    public AnchorPane RockPaperScissorsAnchorpane; // Hauptcontainer für das Spiel
 
+    private String myWeapon; // vom Spieler gewählte Waffe
+    private String botWeapon; // vom Bot gewählte Waffe
 
     public void initialize() {
-        displayChoiceBox();
+        // Musikdateien zur ChoiceBox hinzufügen
+        musicChoiceBox.getItems().addAll(
+                "Gelbton - Losing control.mp3",
+                "Mii_Lobbymusic.mp3",
+                "Push_Push_Push.mp3"
+        );
+
+        // Listener: wird ausgelöst, wenn der Benutzer eine neue Musik auswählt
+        musicChoiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            if (newValue == null) return;
+
+            // Stoppe vorherige Musik, falls vorhanden
+            if (mediaPlayer != null) {
+                mediaPlayer.stop();
+            }
+
+            // Lade die neue Musikdatei aus dem Ressourcenpfad
+            String resourcePath = "/htl/steyr/rockpaperscissors_mhoreth_lkreisma/music/" + newValue;
+            URL url = getClass().getResource(resourcePath);
+            if (url == null) {
+                System.err.println("Resource nicht gefunden: " + resourcePath);
+                return;
+            }
+
+            // Starte neuen MediaPlayer mit der ausgewählten Musik
+            Media sound = new Media(url.toExternalForm());
+            mediaPlayer = new MediaPlayer(sound);
+            mediaPlayer.setVolume(0.5); // Lautstärke auf 50 %
+            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE); // Endlosschleife
+            mediaPlayer.play();
+        });
     }
 
     public void weaponButtonClicked(ActionEvent actionEvent) {
-        //holt sich das was auf dem Button steht
+        // Hole die ID des gedrückten Buttons (z. B. "rockButton")
         myWeapon = ((Button) actionEvent.getSource()).getId();
 
+        // Setze das Bild für die eigene Waffe
         Image myImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfMe())));
         myWeaponImageView.setImage(myImage);
 
-
-        //in weapon steht nun die ausgewählte Waffe (Rock) (Paper) (Scissors)
+        // Bot wählt zufällig eine Waffe
         botWeapon = computer.chosenWeapon();
 
+        // Starte die Fortschrittsanzeige
         progressBar();
-
     }
 
+    // Liefert den Bildpfad für die Bot-Waffe
     public String pictureOfBot() {
         return switch (botWeapon) {
             case "Rock" -> "pictures/Rock.png";
@@ -61,8 +98,9 @@ public class GameController {
         };
     }
 
+    // Liefert den Bildpfad für die eigene Waffe basierend auf Button-ID
     public String pictureOfMe() {
-        System.out.println(myWeapon);
+        System.out.println(myWeapon); // Debug-Ausgabe
         return switch (myWeapon) {
             case "rockButton" -> "pictures/Rock.png";
             case "paperButton" -> "pictures/Paper.png";
@@ -71,38 +109,36 @@ public class GameController {
         };
     }
 
-
+    // Berechnet den Gewinner des Spiels
     public int winnerOfMatch() {
         if (myWeapon.equals("rockButton") && botWeapon.equals("Scissors") ||
                 myWeapon.equals("scissorsButton") && botWeapon.equals("Paper") ||
                 myWeapon.equals("paperButton") && botWeapon.equals("Rock")) {
-            return 1; // -> I Win
+            return 1; // Spieler gewinnt
         } else if (myWeapon.equals("rockButton") && botWeapon.equals("Rock") ||
                 myWeapon.equals("scissorsButton") && botWeapon.equals("Scissors") ||
                 myWeapon.equals("paperButton") && botWeapon.equals("Paper")) {
-            return 2; // -> Its a Draw
+            return 2; // Unentschieden
         } else {
-            return 3; // -> The Bot Won
+            return 3; // Bot gewinnt
         }
     }
 
+    // Zeigt das Ergebnis des Spiels an
     public void resultOfMatch() {
         Image botImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream(pictureOfBot())));
         botWeaponImageView.setImage(botImage);
 
-
-        if (winnerOfMatch() == 1) {
-            System.out.println("! YOU WON !");
-        } else if (winnerOfMatch() == 2) {
-            System.out.println("! ITS A DRAW !");
-        } else if (winnerOfMatch() == 3) {
-            System.out.println("! THE BOT WON !");
-        } else {
-            //to prevent any errors if winnerOfMatch smaller than 1 or larger than 3
-            System.out.println("ERROR, somethings not working");
+        // Konsolenausgabe des Ergebnisses
+        switch (winnerOfMatch()) {
+            case 1 -> System.out.println("! YOU WON !");
+            case 2 -> System.out.println("! ITS A DRAW !");
+            case 3 -> System.out.println("! THE BOT WON !");
+            default -> System.out.println("ERROR, somethings not working");
         }
     }
 
+    // Fortschrittsbalken mit Zufallsdauer und Animation
     public synchronized void progressBar() {
         ProgressBar progressbar = new ProgressBar();
         progressbar.setVisible(true);
@@ -113,27 +149,26 @@ public class GameController {
         progressbar.setLayoutX((RockPaperScissorsAnchorpane.getPrefWidth() / 2) - 40);
         progressbar.setProgress(0);
 
+        // Animation in separatem Thread
         Thread thread = new Thread(() -> {
-            int progresstime = 1000 + new Random().nextInt(3000);
+            int progresstime = 1000 + new Random().nextInt(3000); // Zufällige Dauer
 
             try {
                 long startTime = System.currentTimeMillis();
                 long endTime = startTime + progresstime;
-                System.out.println("Time: " + progresstime); //to find out how long it took
+                System.out.println("Time: " + progresstime); // Debug-Ausgabe
 
                 while (System.currentTimeMillis() < endTime) {
                     double progress = (double) (System.currentTimeMillis() - startTime) / progresstime;
                     Platform.runLater(() -> progressbar.setProgress(progress));
-
-                    // CHANGE: for a smooth animation later
-                    Thread.sleep(20);
+                    Thread.sleep(20); // flüssige Animation
                 }
 
-                // Finish up
+                // Fortschrittsbalken ausblenden und Ergebnis anzeigen
                 Platform.runLater(() -> {
-                    progressbar.setProgress(1.0); //that the progressbar has to be visually full
+                    progressbar.setProgress(1.0);
                     progressbar.setVisible(false);
-                    resultOfMatch(); // Call the result method here!
+                    resultOfMatch();
                 });
 
             } catch (InterruptedException e) {
@@ -143,27 +178,11 @@ public class GameController {
         thread.start();
     }
 
+    // Alternative Methode zum Befüllen der ChoiceBox (nicht verwendet, da initialize es schon macht)
     public void displayChoiceBox() {
         musicChoiceBox.getItems().add("Gelbton - Losing control.mp3");
         musicChoiceBox.getItems().add("Mii_Lobbymusic.mp3");
         musicChoiceBox.getItems().add("Push_Push_Push.mp3");
-    }
-
-    public void choiceBoxClicked(MouseEvent mouseEvent) {
-        String value = (String) musicChoiceBox.getValue();
-        String path = "./music/" + value;
-
-        try {
-            URL resource = getClass().getResource(null);
-            Media sound = new Media(resource.toExternalForm());
-            MediaPlayer mediaPlayer = new MediaPlayer(sound);
-            mediaPlayer.setVolume(50);
-            mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-            mediaPlayer.play();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 }
 
