@@ -15,7 +15,7 @@ public class Highscore {
 
     public int getHighscore(){
         try (BufferedReader reader = new BufferedReader(new FileReader("highscore.txt"))) {
-            return Integer.parseInt(reader.readLine());
+            return Integer.parseInt(reader.readLine()); //reads the number thats in the .txt and returns it as integer
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -36,7 +36,7 @@ public class Highscore {
 
     private void writeHighscore() throws IOException {
         FileWriter fileWriter = new FileWriter("highscore.txt");
-        fileWriter.write(Integer.toString(highscore));
+        fileWriter.write(Integer.toString(highscore)); //rewrites the .txt
         fileWriter.close();
     }
 
