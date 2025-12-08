@@ -6,10 +6,11 @@ public class Computer {
 
     public String chosenWeapon() {
 
-        return switch (ThreadLocalRandom.current().nextInt(1, 3 + 1)) {
+        return switch (ThreadLocalRandom.current().nextInt(1, 4 + 1)) {
             case 1 -> "Rock";
             case 2 -> "Paper";
             case 3 -> "Scissors";
+            case 4 -> "Well";
             default -> chosenWeapon();
         };
 

@@ -34,6 +34,7 @@ public class GameController {
     public Button rockButton;
     public Button paperButton;
     public Button scissorsButton;
+    public Button wellButton;
 
     public AnchorPane RockPaperScissorsAnchorpane;
 
@@ -112,6 +113,7 @@ public class GameController {
             case "Rock" -> "pictures/Rock.png";
             case "Paper" -> "pictures/Paper.png";
             case "Scissors" -> "pictures/Scissors.png";
+            case "Well" -> "pictures/brunnen.png";
             default -> null;
         };
     }
@@ -122,6 +124,7 @@ public class GameController {
             case "rockButton" -> "pictures/Rock.png";
             case "paperButton" -> "pictures/Paper.png";
             case "scissorsButton" -> "pictures/Scissors.png";
+            case "wellButton" -> "pictures/brunnen.png";
             default -> null;
         };
     }
@@ -130,11 +133,15 @@ public class GameController {
     public int winnerOfMatch() {
         if (myWeapon.equals("rockButton") && botWeapon.equals("Scissors") ||
                 myWeapon.equals("scissorsButton") && botWeapon.equals("Paper") ||
-                myWeapon.equals("paperButton") && botWeapon.equals("Rock")) {
+                myWeapon.equals("paperButton") && botWeapon.equals("Rock") ||
+
+                myWeapon.equals("wellButton") && botWeapon.equals("Rock") ||
+                myWeapon.equals("wellButton") && botWeapon.equals("Scissors")) {
             return 1; // Spieler gewinnt
         } else if (myWeapon.equals("rockButton") && botWeapon.equals("Rock") ||
                 myWeapon.equals("scissorsButton") && botWeapon.equals("Scissors") ||
-                myWeapon.equals("paperButton") && botWeapon.equals("Paper")) {
+                myWeapon.equals("paperButton") && botWeapon.equals("Paper") ||
+                myWeapon.equals("wellButton") && botWeapon.equals("Well")) {
             return 2; // Unentschieden
         } else {
             return 3; // Bot gewinnt
