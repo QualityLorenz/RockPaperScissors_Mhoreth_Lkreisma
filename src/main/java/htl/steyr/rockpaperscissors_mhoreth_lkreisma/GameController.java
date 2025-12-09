@@ -134,6 +134,7 @@ public class GameController {
         if (myWeapon.equals("rockButton") && botWeapon.equals("Scissors") ||
                 myWeapon.equals("scissorsButton") && botWeapon.equals("Paper") ||
                 myWeapon.equals("paperButton") && botWeapon.equals("Rock") ||
+                myWeapon.equals("paperButton") && botWeapon.equals("Well") ||
 
                 myWeapon.equals("wellButton") && botWeapon.equals("Rock") ||
                 myWeapon.equals("wellButton") && botWeapon.equals("Scissors")) {
@@ -180,12 +181,14 @@ public class GameController {
     // Fortschrittsbalken mit Zufallsdauer und Animation
     public synchronized void progressBar() {
         ProgressBar progressbar = new ProgressBar();
+        progressbar.setId("theProgressbar");
         progressbar.setVisible(true);
         RockPaperScissorsAnchorpane.getChildren().add(progressbar);
         progressbar.setPrefWidth(80);
         progressbar.setPrefHeight(20);
         progressbar.setLayoutY((RockPaperScissorsAnchorpane.getPrefHeight()/3)*2);
         progressbar.setLayoutX((RockPaperScissorsAnchorpane.getPrefWidth()/2)-40);
+
         progressbar.setProgress(0);
 
         // Animation in separatem Thread
@@ -216,12 +219,14 @@ public class GameController {
         thread.start();
     }
 
-    // Alternative Methode zum Befüllen der ChoiceBox (nicht verwendet, da initialize es schon macht)
+    /*  @Alternative Methode zum Befüllen der ChoiceBox (nicht verwendet, da initialize es schon macht)
     public void displayChoiceBox() {
         musicChoiceBox.getItems().add("Gelbton - Losing control.mp3");
         musicChoiceBox.getItems().add("Mii_Lobbymusic.mp3");
         musicChoiceBox.getItems().add("Push_Push_Push.mp3");
     }
+
+     */
 }
 
     

@@ -1,25 +1,23 @@
-#rockButton {
-    -fx-background-image: url("./pictures/Rock.png");
-    -fx-background-size: cover;
-    -fx-background-color:transparent;
-}
 
-#paperButton {
-    -fx-background-image: url("./pictures/Paper.png");
+#rockButton, #paperButton, #scissorsButton, #wellButton {
     -fx-background-size: cover;
     -fx-background-color:transparent;
-}
 
-#scissorsButton {
-    -fx-background-image: url("pictures/Scissors.png");
-    -fx-background-size: cover;
-    -fx-background-color:transparent;
 }
 
 #rockButton:hover, #paperButton:hover, #scissorsButton:hover, #wellButton:hover {
-    -fx-scale-x: 1.3;
-    -fx-scale-y: 1.3;
+    -fx-scale-x: 1.15;
+    -fx-scale-y: 1.15;
 }
+
+#rockButton { -fx-background-image: url("./pictures/Rock.png"); }
+
+#paperButton { -fx-background-image: url("./pictures/Paper.png"); }
+
+#scissorsButton { -fx-background-image: url("pictures/Scissors.png"); }
+
+#wellButton { -fx-background-image: url("pictures/brunnen.png"); }
+
 
 
 #musicChoiceBox{
@@ -33,11 +31,6 @@
     -fx-pref-width: 185px;
 }
 
-#wellButton {
-    -fx-background-image: url("pictures/brunnen.png");
-    -fx-background-size: cover;
-    -fx-background-color:transparent;
-}
 
 #RockPaperScissorsAnchorpane{
     -fx-background-color: #82c9c0;
