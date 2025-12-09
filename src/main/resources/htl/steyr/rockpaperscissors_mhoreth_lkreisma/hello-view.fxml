@@ -30,7 +30,7 @@
         <ImageView fx:id="botWeaponImageView" fitHeight="150.0" fitWidth="150.0" layoutX="380.0" layoutY="502.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="70.0" />
 
         <ChoiceBox fx:id="musicChoiceBox" layoutX="14.0" layoutY="811.0" prefWidth="150.0" AnchorPane.leftAnchor="14.0" />
-        <Label layoutX="15.0" layoutY="767.0" text="Music Player" AnchorPane.leftAnchor="15.0">
+        <Label fx:id="MusicPlayerLabel" layoutX="15.0" layoutY="767.0" text="Music Player" AnchorPane.leftAnchor="15.0">
             <font>
                 <Font size="20.0" />
             </font>
