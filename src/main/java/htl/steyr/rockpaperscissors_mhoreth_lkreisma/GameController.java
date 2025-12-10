@@ -198,7 +198,7 @@ public class GameController {
                     double progress = (double) (System.currentTimeMillis() - startTime) / progresstime;
                     Platform.runLater(() -> progressbar.setProgress(progress));
                     Thread.sleep(20); // smooth animation
-                    rockButton.setDisable(true)
+                    rockButton.setDisable(true);
                     scissorsButton.setDisable(true);
                     paperButton.setDisable(true);
                     wellButton.setDisable(true);
