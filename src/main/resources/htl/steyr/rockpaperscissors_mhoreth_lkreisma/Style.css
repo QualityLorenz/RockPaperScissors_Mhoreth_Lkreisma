@@ -35,7 +35,7 @@
     -fx-font-size: 15px;
     -fx-background-color: rgb(67, 103, 99);
     -fx-background-radius: 12;
-    -fx-border-style: bold;
+    -fx-border-style: solid;
     -fx-border-radius: 12;
     -fx-border-color: #282848;
     -fx-pref-width: 185px;
