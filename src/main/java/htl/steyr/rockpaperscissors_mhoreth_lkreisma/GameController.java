@@ -198,12 +198,20 @@ public class GameController {
                     double progress = (double) (System.currentTimeMillis() - startTime) / progresstime;
                     Platform.runLater(() -> progressbar.setProgress(progress));
                     Thread.sleep(20); // smooth animation
+                    rockButton.disableProperty();
+                    scissorsButton.setDisable(true);
+                    paperButton.setDisable(true);
+                    wellButton.setDisable(true);
                 }
 
                 // hide progress bar and display result
                 Platform.runLater(() -> {
                     progressbar.setProgress(1.0); // ensure progress bar is visually full
                     progressbar.setVisible(false);
+                    rockButton.setDisable(false);
+                    paperButton.setDisable(false);
+                    scissorsButton.setDisable(false);
+                    wellButton.setDisable(false);
                     resultOfMatch(); // call the result method here
                 });
 
