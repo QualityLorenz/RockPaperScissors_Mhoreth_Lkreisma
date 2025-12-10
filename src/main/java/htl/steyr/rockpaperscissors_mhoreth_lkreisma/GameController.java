@@ -171,6 +171,10 @@ public class GameController {
             System.out.println("error, something is not working");
         }
         scoreLabel.setText(String.valueOf(currentScore));
+        rockButton.setDisable(false);
+        paperButton.setDisable(false);
+        scissorsButton.setDisable(false);
+        wellButton.setDisable(false);
     }
 
     // progress bar with random duration and animation
@@ -209,10 +213,7 @@ public class GameController {
                 Platform.runLater(() -> {
                     progressbar.setProgress(1.0); // ensure progress bar is visually full
                     progressbar.setVisible(false);
-                    rockButton.setDisable(false);
-                    paperButton.setDisable(false);
-                    scissorsButton.setDisable(false);
-                    wellButton.setDisable(false);
+
                     resultOfMatch(); // call the result method here
                 });
 
