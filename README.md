@@ -172,12 +172,3 @@ Free to use for educational purposes.
 Feel free to modify or extend.
 
 ---
-
-If you want, I can also generate:
-
-📌 A logo for the project
-📌 A version with screenshots
-📌 A version with badges (JavaFX, license, build status, etc.)
-📌 A more humorous or more professional rewrite
-
-Just tell me!
