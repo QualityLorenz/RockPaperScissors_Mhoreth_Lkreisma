@@ -2,7 +2,7 @@
 
 A modern, redesigned JavaFX version of **Rock–Paper–Scissors**, extended with the special **Well** mechanic.
 
-Created by **Lukas Kreismair** and **Mhoreth**
+Created by **Lkreisma** and **Mhoreth**
 (HTL Steyr)
 
 ---
@@ -162,7 +162,6 @@ HTL Steyr — School Project
 
 ## 📄 License
 
-Free to use for educational purposes.
-Feel free to modify or extend.
+! This Project was for educational Purpose !
 
 ---
